@@ -12,7 +12,15 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @holder = ['G','PG','PG-13','R']
     
+    #if params[ratings].nil? == false
+       
+     #   @holder = []
+      #  params[ratings].each{|x,y| @holder = @holder + x}
+      
+    #end
+      
     if (params[:sort_by] == "title")
       @movies = Movie.order(:title)
     end
@@ -54,3 +62,13 @@ class MoviesController < ApplicationController
   end
 
 end
+
+ def previous?(rating)
+   found = false
+   @holder.each{|x|
+   if rating = x
+     found = true
+   end
+   }
+   return found
+ end
